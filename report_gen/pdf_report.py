@@ -1,0 +1,401 @@
+# ============================================================
+# report_gen/pdf_report.py — PDF report generation
+# ============================================================
+# Uses ReportLab to generate professional multi-section PDF reports.
+# Each report includes: cover page, summary stats table, data table,
+# and a footer with page numbers.
+# ============================================================
+
+from pathlib import Path
+from datetime import datetime
+from typing import Optional, Union
+
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4, LETTER
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import cm, mm
+from reportlab.platypus import (
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
+    HRFlowable, PageBreak
+)
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
+
+from config.settings import (
+    REPORT_COMPANY_NAME, REPORT_AUTHOR,
+    PDF_PRIMARY_COLOR, PDF_SECONDARY_COLOR,
+    PDF_SUCCESS_COLOR, PDF_DANGER_COLOR,
+    PDF_PAGE_SIZE, DATA_OUTPUT_DIR
+)
+from utils.logger import get_logger, log_function_call
+from utils.helpers import get_timestamp, sanitize_filename
+
+logger = get_logger(__name__)
+
+
+def _rgb(r, g, b):
+    """Convert 0-255 RGB values to ReportLab's 0-1 scale."""
+    return colors.Color(r/255, g/255, b/255)
+
+
+# ── Brand colors ─────────────────────────────────────────────
+PRIMARY   = _rgb(*PDF_PRIMARY_COLOR)
+SECONDARY = _rgb(*PDF_SECONDARY_COLOR)
+SUCCESS   = _rgb(*PDF_SUCCESS_COLOR)
+DANGER    = _rgb(*PDF_DANGER_COLOR)
+LIGHT_GRAY = _rgb(245, 245, 245)
+MID_GRAY   = _rgb(200, 200, 200)
+WHITE      = colors.white
+BLACK      = colors.black
+
+
+class PDFReport:
+    """
+    Build a professional PDF report from data and analysis results.
+
+    HOW TO USE:
+        from report_gen.pdf_report import PDFReport
+        from data_processor.cleaner import DataCleaner
+
+        cleaner = DataCleaner("sales.csv").load().clean()
+        df = cleaner.get_dataframe()
+
+        report = PDFReport(title="Monthly Sales Report")
+        report.add_summary_section({"total_rows": 500, "total_sales": 125000})
+        report.add_dataframe_section("Sales Data", df.head(20))
+        path = report.save()
+        print(f"Report saved to: {path}")
+    """
+
+    def __init__(self, title: str, subtitle: str = "", output_dir: Union[str, Path] = None):
+        """
+        Args:
+            title:      Main title on the cover page.
+            subtitle:   Secondary title (e.g. date range or department).
+            output_dir: Where to save the PDF. Defaults to data/output/.
+        """
+        self.title    = title
+        self.subtitle = subtitle
+        self.output_dir = Path(output_dir) if output_dir else DATA_OUTPUT_DIR
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+
+        # "Story" is ReportLab's term for the list of content blocks in the document
+        self.story: list = []
+
+        # Page size
+        self.page_size = A4 if PDF_PAGE_SIZE == "A4" else LETTER
+
+        # Build the style sheet (fonts, colors, spacing for different text types)
+        self._build_styles()
+
+    def _build_styles(self):
+        """Define all text styles used in the report."""
+        base = getSampleStyleSheet()
+
+        # Cover title — large, centered, primary color
+        self.style_cover_title = ParagraphStyle(
+            "CoverTitle",
+            parent=base["Title"],
+            fontSize=28,
+            textColor=PRIMARY,
+            spaceAfter=12,
+            alignment=TA_CENTER,
+            fontName="Helvetica-Bold"
+        )
+
+        # Cover subtitle
+        self.style_cover_subtitle = ParagraphStyle(
+            "CoverSubtitle",
+            parent=base["Normal"],
+            fontSize=14,
+            textColor=SECONDARY,
+            spaceAfter=8,
+            alignment=TA_CENTER
+        )
+
+        # Section heading (e.g. "Summary Statistics")
+        self.style_section_heading = ParagraphStyle(
+            "SectionHeading",
+            parent=base["Heading1"],
+            fontSize=16,
+            textColor=PRIMARY,
+            spaceBefore=20,
+            spaceAfter=8,
+            fontName="Helvetica-Bold",
+            borderPad=4
+        )
+
+        # Body text
+        self.style_body = ParagraphStyle(
+            "BodyText",
+            parent=base["Normal"],
+            fontSize=10,
+            textColor=_rgb(50, 50, 50),
+            spaceAfter=6,
+            leading=14   # line height
+        )
+
+        # Table header text
+        self.style_table_header = ParagraphStyle(
+            "TableHeader",
+            parent=base["Normal"],
+            fontSize=9,
+            textColor=WHITE,
+            fontName="Helvetica-Bold",
+            alignment=TA_CENTER
+        )
+
+        # Table cell text
+        self.style_table_cell = ParagraphStyle(
+            "TableCell",
+            parent=base["Normal"],
+            fontSize=8,
+            textColor=_rgb(50, 50, 50)
+        )
+
+        # Metadata text (small, gray — for "Generated by" etc.)
+        self.style_meta = ParagraphStyle(
+            "MetaText",
+            parent=base["Normal"],
+            fontSize=8,
+            textColor=SECONDARY
+        )
+
+    def _add_page_header_footer(self, canvas, doc):
+        """
+        Called automatically by ReportLab for each page.
+        Draws the company name at the top and page number at the bottom.
+        """
+        canvas.saveState()
+        page_width, page_height = self.page_size
+
+        # ── Header: thin blue line + company name ─────────────
+        canvas.setStrokeColor(PRIMARY)
+        canvas.setLineWidth(1)
+        canvas.line(1.5*cm, page_height - 1.2*cm, page_width - 1.5*cm, page_height - 1.2*cm)
+
+        canvas.setFillColor(PRIMARY)
+        canvas.setFont("Helvetica-Bold", 9)
+        canvas.drawString(1.5*cm, page_height - 1.0*cm, REPORT_COMPANY_NAME)
+
+        canvas.setFillColor(SECONDARY)
+        canvas.setFont("Helvetica", 8)
+        canvas.drawRightString(page_width - 1.5*cm, page_height - 1.0*cm,
+                               datetime.now().strftime("%d %B %Y"))
+
+        # ── Footer: thin line + page number ───────────────────
+        canvas.setStrokeColor(MID_GRAY)
+        canvas.setLineWidth(0.5)
+        canvas.line(1.5*cm, 1.5*cm, page_width - 1.5*cm, 1.5*cm)
+
+        canvas.setFillColor(SECONDARY)
+        canvas.setFont("Helvetica", 8)
+        canvas.drawCentredString(page_width / 2, 1.0*cm, f"Page {doc.page}")
+        canvas.drawString(1.5*cm, 1.0*cm, f"Generated by {REPORT_AUTHOR}")
+        canvas.drawRightString(page_width - 1.5*cm, 1.0*cm, self.title)
+
+        canvas.restoreState()
+
+    def add_cover_page(self) -> "PDFReport":
+        """Add a professional cover page to the report."""
+        self.story.append(Spacer(1, 5*cm))
+
+        # Title
+        self.story.append(Paragraph(self.title, self.style_cover_title))
+
+        # Horizontal rule under title
+        self.story.append(Spacer(1, 0.3*cm))
+        self.story.append(HRFlowable(width="80%", thickness=2, color=PRIMARY,
+                                     hAlign="CENTER"))
+        self.story.append(Spacer(1, 0.3*cm))
+
+        # Subtitle
+        if self.subtitle:
+            self.story.append(Paragraph(self.subtitle, self.style_cover_subtitle))
+
+        # Metadata
+        self.story.append(Spacer(1, 1*cm))
+        meta_lines = [
+            f"Generated: {datetime.now().strftime('%d %B %Y at %H:%M')}",
+            f"Prepared by: {REPORT_AUTHOR}",
+            f"Organisation: {REPORT_COMPANY_NAME}",
+        ]
+        for line in meta_lines:
+            self.story.append(Paragraph(line, self.style_meta))
+            self.story.append(Spacer(1, 0.2*cm))
+
+        # Page break — everything after this goes on the next page
+        self.story.append(PageBreak())
+        return self
+
+    def add_section_heading(self, text: str) -> "PDFReport":
+        """Add a bold section heading."""
+        self.story.append(Paragraph(text, self.style_section_heading))
+        self.story.append(HRFlowable(width="100%", thickness=0.5, color=MID_GRAY))
+        self.story.append(Spacer(1, 0.2*cm))
+        return self
+
+    def add_paragraph(self, text: str) -> "PDFReport":
+        """Add a body text paragraph."""
+        self.story.append(Paragraph(text, self.style_body))
+        return self
+
+    def add_spacer(self, height_cm: float = 0.5) -> "PDFReport":
+        """Add vertical whitespace."""
+        self.story.append(Spacer(1, height_cm * cm))
+        return self
+
+    def add_summary_section(self, metrics: dict) -> "PDFReport":
+        """
+        Add a 2-column key-value summary table.
+
+        Args:
+            metrics: dict like {"Total Records": 500, "Total Sales": "$125,000"}
+        """
+        self.add_section_heading("Summary")
+
+        # Build rows: pair up metrics two per row for a 4-column table
+        keys   = list(metrics.keys())
+        values = list(metrics.values())
+        rows   = []
+
+        for i in range(0, len(keys), 2):
+            row = [keys[i], str(values[i])]
+            if i + 1 < len(keys):
+                row += [keys[i+1], str(values[i+1])]
+            else:
+                row += ["", ""]
+            rows.append(row)
+
+        table = Table(rows, colWidths=["30%", "20%", "30%", "20%"])
+        table.setStyle(TableStyle([
+            ("BACKGROUND",   (0, 0), (0, -1), LIGHT_GRAY),
+            ("BACKGROUND",   (2, 0), (2, -1), LIGHT_GRAY),
+            ("FONTNAME",     (0, 0), (0, -1), "Helvetica-Bold"),
+            ("FONTNAME",     (2, 0), (2, -1), "Helvetica-Bold"),
+            ("FONTSIZE",     (0, 0), (-1, -1), 9),
+            ("TEXTCOLOR",    (0, 0), (0, -1), _rgb(50, 50, 50)),
+            ("TEXTCOLOR",    (1, 0), (1, -1), PRIMARY),
+            ("TEXTCOLOR",    (3, 0), (3, -1), PRIMARY),
+            ("FONTNAME",     (1, 0), (1, -1), "Helvetica-Bold"),
+            ("FONTNAME",     (3, 0), (3, -1), "Helvetica-Bold"),
+            ("GRID",         (0, 0), (-1, -1), 0.3, MID_GRAY),
+            ("PADDING",      (0, 0), (-1, -1), 8),
+            ("ROWBACKGROUNDS", (0, 0), (-1, -1), [WHITE, LIGHT_GRAY]),
+        ]))
+
+        self.story.append(table)
+        self.story.append(Spacer(1, 0.5*cm))
+        return self
+
+    def add_dataframe_section(self, title: str, df,
+                              max_rows: int = 50) -> "PDFReport":
+        """
+        Add a formatted data table from a pandas DataFrame.
+
+        Args:
+            title:    Section heading for this table.
+            df:       pandas DataFrame to display.
+            max_rows: Maximum rows to show (default 50 — PDFs get huge with more).
+        """
+        import pandas as pd
+
+        self.add_section_heading(title)
+
+        if df.empty:
+            self.add_paragraph("No data available.")
+            return self
+
+        # Truncate to max_rows
+        display_df = df.head(max_rows)
+        if len(df) > max_rows:
+            self.add_paragraph(
+                f"Showing first {max_rows} of {len(df):,} rows. "
+                f"Full data available in the Excel export."
+            )
+
+        # Build table data: header row + data rows
+        headers = [str(col).replace("_", " ").title() for col in display_df.columns]
+        header_row = [Paragraph(h, self.style_table_header) for h in headers]
+
+        data_rows = []
+        for _, row in display_df.iterrows():
+            data_row = []
+            for val in row:
+                # Format numbers nicely; truncate long text
+                if isinstance(val, float):
+                    cell_text = f"{val:,.2f}"
+                elif isinstance(val, int):
+                    cell_text = f"{val:,}"
+                else:
+                    cell_text = str(val)[:40] + "..." if len(str(val)) > 40 else str(val)
+
+                data_row.append(Paragraph(cell_text, self.style_table_cell))
+            data_rows.append(data_row)
+
+        table_data = [header_row] + data_rows
+
+        # Auto-distribute column widths evenly
+        page_width = self.page_size[0] - 3*cm   # usable width
+        col_count  = len(headers)
+        col_width  = page_width / col_count
+
+        table = Table(table_data, colWidths=[col_width] * col_count, repeatRows=1)
+        table.setStyle(TableStyle([
+            # Header row
+            ("BACKGROUND",   (0, 0), (-1, 0),  PRIMARY),
+            ("TEXTCOLOR",    (0, 0), (-1, 0),  WHITE),
+            ("FONTNAME",     (0, 0), (-1, 0),  "Helvetica-Bold"),
+            ("FONTSIZE",     (0, 0), (-1, 0),  9),
+            ("ALIGN",        (0, 0), (-1, 0),  "CENTER"),
+            # Data rows
+            ("FONTSIZE",     (0, 1), (-1, -1), 8),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [WHITE, LIGHT_GRAY]),
+            ("GRID",         (0, 0), (-1, -1), 0.3, MID_GRAY),
+            ("PADDING",      (0, 0), (-1, -1), 5),
+            ("VALIGN",       (0, 0), (-1, -1), "MIDDLE"),
+        ]))
+
+        self.story.append(table)
+        self.story.append(Spacer(1, 0.5*cm))
+        return self
+
+    @log_function_call(logger)
+    def save(self, filename: str = None) -> Path:
+        """
+        Render the PDF and save it to disk.
+
+        Args:
+            filename: Custom filename (without extension). If None, auto-generates one.
+
+        Returns:
+            Path to the saved PDF file.
+        """
+        if filename is None:
+            filename = f"{sanitize_filename(self.title)}_{get_timestamp()}"
+
+        if not filename.endswith(".pdf"):
+            filename = filename + ".pdf"
+
+        output_path = self.output_dir / filename
+
+        # Create the PDF document
+        doc = SimpleDocTemplate(
+            str(output_path),
+            pagesize=self.page_size,
+            rightMargin=1.5*cm,
+            leftMargin=1.5*cm,
+            topMargin=2.0*cm,
+            bottomMargin=2.0*cm,
+            title=self.title,
+            author=REPORT_AUTHOR
+        )
+
+        # Build the document (this is where ReportLab renders everything)
+        doc.build(
+            self.story,
+            onFirstPage=self._add_page_header_footer,
+            onLaterPages=self._add_page_header_footer
+        )
+
+        logger.info(f"PDF saved: {output_path}")
+        return output_path

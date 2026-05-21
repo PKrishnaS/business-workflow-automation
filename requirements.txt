@@ -1,0 +1,33 @@
+# ============================================================
+# Business Workflow Automation Suite
+# requirements.txt — All Python dependencies
+# ============================================================
+# Install all at once with:
+#   pip install -r requirements.txt
+
+# ── Data Processing ──────────────────────────────────────────
+pandas==2.2.2           # Read, clean, merge Excel/CSV data
+openpyxl==3.1.4         # Read and write .xlsx Excel files
+xlrd==2.0.1             # Read older .xls Excel files
+
+# ── PDF Generation ───────────────────────────────────────────
+reportlab==4.2.2        # Create professional PDF reports
+Pillow==10.4.0          # Image handling for PDFs and GUI
+
+# ── GUI (tkinter is built into Python, these extend it) ──────
+ttkthemes==3.2.2        # Better-looking GUI themes for tkinter
+
+# ── Scheduling ───────────────────────────────────────────────
+schedule==1.2.2         # Run tasks automatically on a timer
+
+# ── Configuration & Environment ──────────────────────────────
+python-dotenv==1.0.1    # Load secrets from a .env file safely
+
+# ── Utilities ────────────────────────────────────────────────
+tqdm==4.66.4            # Progress bars in the terminal
+colorama==0.4.6         # Colored terminal output (Windows fix)
+tabulate==0.9.0         # Pretty-print tables in the terminal
+
+# ── Testing ──────────────────────────────────────────────────
+pytest==8.2.2           # Run automated tests
+pytest-cov==5.0.0       # Show test coverage percentage

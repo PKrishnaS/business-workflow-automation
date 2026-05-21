@@ -1,0 +1,151 @@
+employee_id,first_name,last_name,department,job_title,salary,hire_date,email,performance,is_active
+EMP0001,  James  ,Johnson,Operations,Operations Analyst,111434.0,2023-09-22,linda.johnson@company.com,Average,True
+EMP0002,Michael,Davis,HR,HR Coordinator,102272.0,2018-08-25,michael.davis@company.com,Needs Improvement,False
+EMP0003,Michael,Jones,Operations,Ops Manager,37853.0,2018-01-13,michael.jones@company.com,Good,True
+EMP0004,Susan,Johnson,Engineering,Engineering Manager,80158.0,2018-09-04,susan.johnson@company.com,Excellent,False
+EMP0005,John,Williams,Engineering,Lead Engineer,88591.0,2022-09-18,john.williams@company.com,Good,False
+EMP0006,Mary,Hernandez,HR,HR Specialist,84236.0,2019-06-29,mary.hernandez@company.com,Good,True
+EMP0007,John,Brown,Marketing,Director,104316.0,2018-01-15,john.brown@company.com,Excellent,True
+EMP0008,Michael,Rodriguez,HR,HR Manager,106361.0,2022-04-03,michael.rodriguez@company.com,Good,True
+EMP0009,Robert,Brown,HR,HR Specialist,55332.0,2019-04-08,robert.brown@company.com,Excellent,False
+EMP0010,Patricia,Johnson,Finance,Accountant,66544.0,2019-02-18,patricia.johnson@company.com,Needs Improvement,True
+EMP0011,Patricia,Smith,HR,HR Manager,41380.0,2022-07-06,patricia.smith@company.com,Average,True
+EMP0012,John,Rodriguez,Finance,Accountant,42398.0,2021-03-30,john.rodriguez@company.com,Good,True
+EMP0013,Patricia,Jones,Finance,Finance Manager,77030.0,2019-08-10,patricia.jones@company.com,Needs Improvement,True
+EMP0014,James,Rodriguez,HR,HR Specialist,71064.0,2019-12-19,james.rodriguez@company.com,Average,False
+EMP0015,David,Miller,Engineering,Lead Engineer,,2023-11-19,david.miller@company.com,Good,False
+EMP0016,Michael,Williams,HR,HR Coordinator,74306.0,2023-04-24,michael.williams@company.com,Good,True
+EMP0017,James,Rodriguez,Sales,Account Manager,95689.0,2022-08-18,james.rodriguez@company.com,Average,True
+EMP0018,Patricia,Garcia,HR,HR Coordinator,68422.0,2018-11-20,patricia.garcia@company.com,Average,True
+EMP0019,Robert,Miller,Engineering,Senior Dev,41755.0,2018-06-11,robert.miller@company.com,Excellent,True
+EMP0020,Patricia,Davis,Finance,Finance Manager,108249.0,2020-05-05,patricia.davis@company.com,Good,True
+EMP0021,Susan,Johnson,Engineering,Senior Dev,59906.0,2023-05-16,susan.johnson@company.com,Good,True
+EMP0022,Jennifer,Jones,HR,HR Coordinator,107362.0,2022-04-09,jennifer.jones@company.com,Average,True
+EMP0023,William,Davis,Sales,Sales Lead,82139.0,2023-03-24,william.davis@company.com,Excellent,False
+EMP0024,Jennifer,Miller,Sales,Account Manager,83589.0,2018-07-07,jennifer.miller@company.com,Needs Improvement,True
+EMP0025,Robert,Rodriguez,Operations,Operations Analyst,37125.0,2022-09-07,robert.rodriguez@company.com,Good,True
+EMP0026,Michael,Martinez,Marketing,Manager,,2020-10-03,michael.martinez@company.com,Average,True
+EMP0027,Susan,Davis,Sales,VP Sales,119108.0,2023-03-03,susan.davis@company.com,Good,True
+EMP0028,Linda,Williams,Marketing,Specialist,106636.0,2018-08-29,linda.williams@company.com,Needs Improvement,True
+EMP0029,Michael,Williams,Engineering,Junior Dev,35836.0,2020-08-05,michael.williams@company.com,Excellent,True
+EMP0030,Linda,Garcia,Engineering,Senior Dev,101287.0,2018-09-05,linda.garcia@company.com,Needs Improvement,False
+EMP0031,James,Rodriguez,Operations,Ops Manager,37061.0,2022-08-12,james.rodriguez@company.com,Excellent,True
+EMP0032,William,Jones,Finance,Finance Manager,71010.0,2018-03-12,william.jones@company.com,Needs Improvement,False
+EMP0033,William,Williams,Marketing,Analyst,47624.0,2020-09-14,william.williams@company.com,Good,True
+EMP0034,Mary,Garcia,Sales,Sales Lead,87022.0,2022-07-22,mary.garcia@company.com,Average,True
+EMP0035,David,Johnson,Operations,Operations Analyst,74318.0,2018-05-10,david.johnson@company.com,Excellent,False
+EMP0036,Linda,Smith,HR,HR Specialist,107443.0,2018-02-08,linda.smith@company.com,Good,True
+EMP0037,Jennifer,Martinez,HR,HR Specialist,119529.0,2019-01-26,jennifer.martinez@company.com,Needs Improvement,True
+EMP0038,Linda,Jones,Marketing,Specialist,109289.0,2018-07-10,linda.jones@company.com,Excellent,True
+EMP0039,John,Garcia,Finance,Finance Manager,39312.0,2018-03-06,john.garcia@company.com,Good,True
+EMP0040,Robert,Williams,Operations,Ops Manager,45084.0,2020-09-11,robert.williams@company.com,Needs Improvement,False
+EMP0041,Michael,Williams,Operations,COO,,2018-11-18,michael.williams@company.com,Needs Improvement,True
+EMP0042,Patricia,Johnson,Engineering,Junior Dev,92290.0,2021-10-27,patricia.johnson@company.com,Needs Improvement,False
+EMP0043,Robert,Davis,Sales,Sales Rep,118115.0,2023-07-03,robert.davis@company.com,Good,True
+EMP0044,John,Hernandez,Finance,Financial Analyst,91603.0,2022-04-06,john.hernandez@company.com,Excellent,True
+EMP0045,Robert,Williams,Marketing,Analyst,45752.0,2022-04-06,robert.williams@company.com,Good,False
+EMP0046,Mary,Smith,Sales,Sales Lead,48965.0,2021-06-16,mary.smith@company.com,Average,True
+EMP0047,Mary,Williams,Sales,Sales Rep,52367.0,2022-11-01,mary.williams@company.com,Average,False
+EMP0048,Jennifer,Rodriguez,Engineering,Junior Dev,46746.0,2019-01-17,jennifer.rodriguez@company.com,Needs Improvement,True
+EMP0049,Michael,Miller,HR,HR Coordinator,73253.0,2018-12-13,michael.miller@company.com,Needs Improvement,True
+EMP0050,David,Miller,Finance,Finance Manager,57227.0,2019-11-26,david.miller@company.com,Good,True
+EMP0051,John,Johnson,Sales,Sales Lead,99634.0,2019-11-16,john.johnson@company.com,Average,True
+EMP0052,Mary,Garcia,HR,HR Specialist,98469.0,2020-10-27,mary.garcia@company.com,Good,False
+EMP0053,Linda,Johnson,Finance,Finance Manager,60630.0,2019-07-09,linda.johnson@company.com,Good,True
+EMP0054,Michael,Garcia,HR,HR Specialist,116289.0,2022-12-09,michael.garcia@company.com,Good,False
+EMP0055,Robert,Garcia,Operations,COO,52842.0,2020-04-02,robert.garcia@company.com,Average,True
+EMP0056,Robert,Hernandez,Marketing,Director,76830.0,2023-07-05,robert.hernandez@company.com,Needs Improvement,True
+EMP0057,Michael,Garcia,Sales,VP Sales,71739.0,2019-04-12,michael.garcia@company.com,Needs Improvement,True
+EMP0058,David,Rodriguez,Finance,Finance Manager,58583.0,2018-04-21,david.rodriguez@company.com,Average,True
+EMP0059,Michael,Hernandez,HR,HR Specialist,44064.0,2023-08-08,michael.hernandez@company.com,Good,True
+EMP0060,Susan,Miller,Marketing,Manager,,2022-03-25,susan.miller@company.com,Excellent,False
+EMP0061,Michael,Rodriguez,Finance,Financial Analyst,111315.0,2023-09-07,michael.rodriguez@company.com,Average,True
+EMP0062,Patricia,Hernandez,Sales,Sales Rep,49335.0,2021-12-25,patricia.hernandez@company.com,Good,True
+EMP0063,Michael,Garcia,Finance,Finance Manager,119769.0,2022-10-30,michael.garcia@company.com,Excellent,True
+EMP0064,William,Rodriguez,Engineering,Lead Engineer,64098.0,2020-06-24,william.rodriguez@company.com,Average,True
+EMP0065,Susan,Rodriguez,HR,HR Specialist,112147.0,2019-09-10,susan.rodriguez@company.com,Good,True
+EMP0066,Michael,Johnson,HR,HR Coordinator,73722.0,2019-04-21,michael.johnson@company.com,Good,True
+EMP0067,Patricia,Rodriguez,Sales,Sales Lead,94681.0,2023-06-02,patricia.rodriguez@company.com,Good,False
+EMP0068,Jennifer,Johnson,Engineering,Engineering Manager,94303.0,2021-05-14,jennifer.johnson@company.com,Excellent,True
+EMP0069,Mary,Hernandez,Engineering,Lead Engineer,119930.0,2019-11-05,mary.hernandez@company.com,Good,True
+EMP0070,William,Miller,Finance,Accountant,78383.0,2023-03-08,william.miller@company.com,Good,False
+EMP0071,David,Hernandez,Operations,Operations Analyst,59430.0,2022-11-06,david.hernandez@company.com,Average,True
+EMP0072,Linda,Martinez,Operations,COO,60863.0,2022-10-26,linda.martinez@company.com,Average,True
+EMP0073,Robert,Johnson,Operations,Operations Analyst,61972.0,2019-02-21,robert.johnson@company.com,Needs Improvement,True
+EMP0074,Linda,Johnson,Sales,Sales Lead,60830.0,2020-12-10,linda.johnson@company.com,Average,True
+EMP0075,Michael,Martinez,Finance,Financial Analyst,115125.0,2019-04-13,michael.martinez@company.com,Good,True
+EMP0076,David,Jones,HR,HR Manager,57613.0,2018-12-14,david.jones@company.com,Good,True
+EMP0077,Mary,Williams,Engineering,Senior Dev,75026.0,2022-03-10,mary.williams@company.com,Good,False
+EMP0078,Barbara,Miller,HR,HR Manager,53070.0,2022-09-29,barbara.miller@company.com,Good,False
+EMP0079,John,Rodriguez,Operations,COO,119575.0,2019-11-15,john.rodriguez@company.com,Average,True
+EMP0080,Linda,Martinez,Marketing,Specialist,76232.0,2018-08-08,linda.martinez@company.com,Good,True
+EMP0081,Michael,Rodriguez,HR,HR Coordinator,60575.0,2023-09-02,michael.rodriguez@company.com,Average,False
+EMP0082,Susan,Davis,Operations,Ops Manager,89477.0,2023-06-25,susan.davis@company.com,Good,True
+EMP0083,Robert,Smith,Finance,Accountant,63905.0,2021-01-30,robert.smith@company.com,Good,True
+EMP0084,Susan,Davis,Marketing,Director,109140.0,2023-09-24,susan.davis@company.com,Excellent,True
+EMP0085,James,Davis,Sales,Sales Lead,106046.0,2020-06-14,james.davis@company.com,Average,True
+EMP0086,Robert,Smith,Operations,COO,67444.0,2023-01-17,robert.smith@company.com,Good,True
+EMP0087,Patricia,Brown,Engineering,Engineering Manager,50386.0,2021-12-07,patricia.brown@company.com,Needs Improvement,False
+EMP0088,Patricia,Smith,Marketing,Specialist,62082.0,2021-12-07,patricia.smith@company.com,Needs Improvement,True
+EMP0089,Jennifer,Jones,Finance,Finance Manager,57069.0,2021-03-31,jennifer.jones@company.com,Needs Improvement,True
+EMP0090,John,Miller,Finance,Finance Manager,47481.0,2018-08-31,john.miller@company.com,Good,True
+EMP0091,John,Garcia,Operations,Operations Analyst,67725.0,2020-10-10,john.garcia@company.com,Average,False
+EMP0092,Michael,Miller,Marketing,Manager,,2023-01-26,michael.miller@company.com,Excellent,True
+EMP0093,Susan,Garcia,HR,HR Manager,71467.0,2023-02-06,susan.garcia@company.com,Average,True
+EMP0094,Susan,Davis,Finance,Accountant,47208.0,2022-01-07,susan.davis@company.com,Excellent,False
+EMP0095,Linda,Jones,Marketing,Director,62767.0,2021-08-15,linda.jones@company.com,Good,True
+EMP0096,Barbara,Davis,Finance,Finance Manager,52117.0,2021-11-08,barbara.davis@company.com,Excellent,True
+EMP0097,Mary,Williams,Engineering,Engineering Manager,37134.0,2022-12-13,mary.williams@company.com,Average,True
+EMP0098,David,Jones,HR,HR Coordinator,52290.0,2019-10-14,david.jones@company.com,Good,True
+EMP0099,Mary,Garcia,Operations,Ops Manager,67819.0,2019-11-09,mary.garcia@company.com,Excellent,False
+EMP0100,Michael,Hernandez,Operations,Ops Manager,65689.0,2019-01-09,michael.hernandez@company.com,Excellent,True
+EMP0101,John,Martinez,Marketing,Director,45215.0,2020-07-15,john.martinez@company.com,Needs Improvement,False
+EMP0102,Mary,Miller,Engineering,Junior Dev,80032.0,2019-06-26,mary.miller@company.com,Average,True
+EMP0103,Susan,Johnson,Marketing,Director,46708.0,2019-02-27,susan.johnson@company.com,Good,True
+EMP0104,John,Hernandez,Sales,Account Manager,85164.0,2019-08-09,john.hernandez@company.com,Excellent,True
+EMP0105,Linda,Garcia,Finance,Finance Manager,56511.0,2020-05-22,linda.garcia@company.com,Good,False
+EMP0106,Patricia,Johnson,Finance,Finance Manager,92984.0,2019-02-16,patricia.johnson@company.com,Good,True
+EMP0107,Jennifer,Miller,Finance,Finance Manager,85335.0,2021-07-12,jennifer.miller@company.com,Good,True
+EMP0108,William,Martinez,Sales,Sales Rep,67527.0,2021-03-13,william.martinez@company.com,Excellent,True
+EMP0109,Robert,Hernandez,Marketing,Specialist,86347.0,2018-08-12,robert.hernandez@company.com,Good,False
+EMP0110,Linda,Hernandez,HR,HR Coordinator,66599.0,2018-10-18,linda.hernandez@company.com,Needs Improvement,True
+EMP0111,Michael,Martinez,Sales,Sales Lead,52299.0,2022-09-20,michael.martinez@company.com,Good,True
+EMP0112,Barbara,Johnson,HR,HR Coordinator,37187.0,2018-02-26,barbara.johnson@company.com,Good,True
+EMP0113,William,Jones,Engineering,Junior Dev,87163.0,2023-08-15,william.jones@company.com,Average,False
+EMP0114,David,Rodriguez,Operations,Ops Manager,45803.0,2019-09-18,david.rodriguez@company.com,Good,True
+EMP0115,Patricia,Williams,Sales,Sales Rep,102017.0,2021-08-31,patricia.williams@company.com,Average,True
+EMP0116,James,Brown,Sales,VP Sales,66278.0,2018-12-20,james.brown@company.com,Average,True
+EMP0117,James,Jones,HR,HR Manager,114800.0,2019-12-21,james.jones@company.com,Excellent,True
+EMP0118,John,Davis,Operations,Operations Analyst,36487.0,2021-11-21,john.davis@company.com,Needs Improvement,True
+EMP0119,Susan,Jones,Marketing,Manager,51637.0,2019-04-29,susan.jones@company.com,Excellent,True
+EMP0120,Mary,Jones,HR,HR Specialist,103662.0,2018-11-12,mary.jones@company.com,Average,False
+EMP0121,Linda,Martinez,Finance,Financial Analyst,,2019-11-15,linda.martinez@company.com,Good,True
+EMP0122,David,Johnson,Sales,Sales Rep,110223.0,2020-07-24,david.johnson@company.com,Needs Improvement,True
+EMP0123,James,Davis,Engineering,Junior Dev,67053.0,2022-01-30,james.davis@company.com,Average,True
+EMP0124,Susan,Hernandez,Marketing,Analyst,107465.0,2022-09-14,susan.hernandez@company.com,Good,True
+EMP0125,Robert,Johnson,Marketing,Director,76934.0,2022-03-08,robert.johnson@company.com,Excellent,True
+EMP0126,James,Miller,Marketing,Specialist,102603.0,2018-10-10,james.miller@company.com,Average,True
+EMP0127,William,Davis,Sales,Sales Lead,46322.0,2018-02-02,william.davis@company.com,Good,True
+EMP0128,Patricia,Davis,Sales,Sales Lead,116620.0,2022-02-17,patricia.davis@company.com,Needs Improvement,False
+EMP0129,James,Miller,Marketing,Specialist,54735.0,2018-04-08,james.miller@company.com,Good,True
+EMP0130,Jennifer,Smith,Operations,COO,36257.0,2022-03-22,jennifer.smith@company.com,Good,True
+EMP0131,Linda,Smith,Marketing,Specialist,90026.0,2019-08-07,linda.smith@company.com,Good,True
+EMP0132,Michael,Garcia,Engineering,Senior Dev,103125.0,2023-02-21,michael.garcia@company.com,Excellent,True
+EMP0133,Michael,Johnson,Finance,Accountant,118521.0,2018-09-13,michael.johnson@company.com,Average,True
+EMP0134,Jennifer,Miller,Marketing,Manager,69208.0,2021-08-29,jennifer.miller@company.com,Good,False
+EMP0135,Patricia,Williams,Sales,Account Manager,44789.0,2019-03-23,patricia.williams@company.com,Good,True
+EMP0136,Jennifer,Miller,Marketing,Director,,2019-05-10,jennifer.miller@company.com,Needs Improvement,True
+EMP0137,Linda,Jones,Marketing,Director,75410.0,2019-05-07,linda.jones@company.com,Excellent,True
+EMP0138,James,Brown,Operations,Ops Manager,114076.0,2021-09-04,james.brown@company.com,Good,True
+EMP0139,Michael,Rodriguez,Operations,Operations Analyst,81627.0,2018-07-20,michael.rodriguez@company.com,Good,True
+EMP0140,Linda,Rodriguez,Marketing,Analyst,88004.0,2020-10-20,linda.rodriguez@company.com,Excellent,False
+EMP0141,James,Smith,Engineering,Senior Dev,50919.0,2020-06-29,james.smith@company.com,Good,True
+EMP0142,David,Johnson,HR,HR Specialist,117614.0,2020-11-26,david.johnson@company.com,Excellent,True
+EMP0143,Linda,Williams,Engineering,Senior Dev,119670.0,2019-01-12,linda.williams@company.com,Good,True
+EMP0144,John,Martinez,Engineering,Engineering Manager,41637.0,2022-11-10,john.martinez@company.com,Average,False
+EMP0145,John,Garcia,Engineering,Engineering Manager,90923.0,2020-05-29,john.garcia@company.com,Good,True
+EMP0146,James,Martinez,Sales,VP Sales,54481.0,2020-10-03,james.martinez@company.com,Good,False
+EMP0147,James,Johnson,HR,HR Manager,97787.0,2021-02-19,james.johnson@company.com,Average,True
+EMP0148,William,Brown,HR,HR Coordinator,119233.0,2018-03-21,william.brown@company.com,Average,True
+EMP0149,Jennifer,Martinez,HR,HR Manager,98527.0,2023-08-20,jennifer.martinez@company.com,Good,False
+EMP0150,Jennifer,Martinez,Sales,Account Manager,,2020-06-16,jennifer.martinez@company.com,Excellent,True

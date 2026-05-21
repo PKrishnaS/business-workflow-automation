@@ -1,0 +1,53 @@
+# ============================================================
+# .gitignore — Files that should NOT be uploaded to GitHub
+# ============================================================
+
+# ── Python internals ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environment (your local Python sandbox) ──────────
+venv/
+env/
+.venv/
+.env/
+
+# ── Secrets — NEVER upload these ─────────────────────────────
+.env
+*.env
+config/secrets.py
+
+# ── IDE / Editor files ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store           # Mac filesystem junk
+Thumbs.db           # Windows filesystem junk
+
+# ── Test & coverage output ───────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── Log files (keep folder, ignore actual log content) ───────
+logs/*.log
+logs/*.txt
+
+# ── Generated outputs (client-specific, not for GitHub) ──────
+data/output/*.pdf
+data/output/*.xlsx
+data/output/*.csv
+
+# ── Temporary files ──────────────────────────────────────────
+*.tmp
+*.temp
+*.bak
