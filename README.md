@@ -286,6 +286,14 @@ pip install --upgrade reportlab Pillow
 | `pytest` | 8.x | Testing |
 
 ---
+<img width="1250" height="935" alt="image" src="https://github.com/user-attachments/assets/63ba0dd4-69c6-4a68-8783-28e1e093cbc6" />
+<img width="1252" height="941" alt="image" src="https://github.com/user-attachments/assets/84bd9b90-d8a2-4cd6-9675-a50cbd87b186" />
+<img width="1246" height="931" alt="image" src="https://github.com/user-attachments/assets/c44fb69b-2cb8-46c3-b80b-8fe8dbf6dff3" />
+<img width="657" height="797" alt="image" src="https://github.com/user-attachments/assets/2ad8a5fa-b671-452b-b18f-df7d4b3b1c9a" />
+<img width="1918" height="1017" alt="image" src="https://github.com/user-attachments/assets/50504410-d0e3-4243-a8ab-12a873b85d87" />
+<img width="1918" height="991" alt="image" src="https://github.com/user-attachments/assets/2e029ce0-98e7-4f50-b966-1d6bedad12d6" />
+
+---
 
 ## 📄 License
 
