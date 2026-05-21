@@ -85,7 +85,7 @@ business_automation/
 ### 2. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/business-workflow-automation.git
+git clone https://github.com/PKrishnaS/business-workflow-automation.git
 cd business-workflow-automation
 ```
 
