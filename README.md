@@ -296,7 +296,3 @@ MIT License — free to use, modify, and sell to clients.
 ## 🤝 Contributing
 
 Pull requests welcome. For major changes, open an issue first.
-
----
-
-*Built with ❤️ in Python — designed for Fiverr automation clients*
